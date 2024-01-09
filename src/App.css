@@ -1,4 +1,13 @@
-#root {
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;600;700&family=Shadows+Into+Light&family=Slabo+27px&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@400;700&display=swap");
+
+* {
+  font-family: "Noto Sans Thai", sans-serif;
+  font-family: "Stardos Stencil", system-ui;
+  font-size: 20px;
+}
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +48,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */

@@ -1,0 +1,19 @@
+.lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vw;
+  height: 100dvh;
+  background-color: blue;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  border: 5px solid white;
+  width: 20rem;
+  padding: 1.51rem 1rem;
+  border-radius: 10%;
+  margin: 0.5rem;
+}

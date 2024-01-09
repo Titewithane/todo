@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+
+  /*! center windows */
+  /*? Left and top are 50% adjust our top-left to middle of vh */
+  /*? and we translate -50% of width and height of container to center a container */
+  position: fixed; /** our container on the position that we set and dynamic when we scroll down or up */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 5rem 4rem; /* vertical horizontal */
+  border-radius: 10%;
+}
