@@ -1,12 +1,22 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import "./CSS/FormLIst.css";
 
-export default function FormList({ addList, setShow, isPopUp, setIsPopUp }) {
+export default function FormList({
+  addList,
+  changeActivate,
+  setShow,
+  isPopUp,
+  setIsPopUp,
+}) {
   const [formData, setFormData] = useState({
     name: "",
     desc: "",
     priorities: "",
+    date: "",
+    id: uuid(),
   });
+  const [isCheck, setIsCheck] = useState([]);
 
   const handleChange = (evt) => {
     const changeField = evt.target.name;
@@ -15,8 +25,23 @@ export default function FormList({ addList, setShow, isPopUp, setIsPopUp }) {
       return { ...curr, [changeField]: newValue };
     });
   };
+
+  const activateForm = () => {
+    setFormData((curr) => {
+      return { ...curr, activate: true };
+    });
+  };
+
   return (
     <div className="container" style={{ opacity: isPopUp && "1" }}>
+      <button
+        className="exit"
+        onClick={() => {
+          setShow(false);
+        }}
+      >
+        X
+      </button>
       <form action="" method="post">
         <div className="Name">
           <input
@@ -41,6 +66,14 @@ export default function FormList({ addList, setShow, isPopUp, setIsPopUp }) {
           ></textarea>
         </div>
         <div className="priorities">
+          <input
+            type="date"
+            name="date"
+            id="data"
+            value={formData.date}
+            onChange={handleChange}
+            required
+          />
           <select
             name="priorities"
             id="priorities"
@@ -57,10 +90,10 @@ export default function FormList({ addList, setShow, isPopUp, setIsPopUp }) {
         </div>
         <button
           onClick={(evt) => {
-            // setLists();
             evt.preventDefault();
             setShow(false);
             setIsPopUp(false);
+            activateForm();
             addList({ formData });
           }}
         >

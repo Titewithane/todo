@@ -1,7 +1,12 @@
 import FormList from "./FormList";
 import { useState } from "react";
 
-export default function AddButton({ addList, isPopUp, setIsPopUp }) {
+export default function AddButton({
+  addList,
+  changeActivate,
+  isPopUp,
+  setIsPopUp,
+}) {
   const [show, setShow] = useState(false);
 
   return (
@@ -17,6 +22,7 @@ export default function AddButton({ addList, isPopUp, setIsPopUp }) {
       {show && (
         <FormList
           addList={addList}
+          delList={delList}
           setShow={setShow}
           isPopUp={isPopUp}
           setIsPopUp={setIsPopUp}
