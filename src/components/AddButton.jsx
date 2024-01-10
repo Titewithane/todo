@@ -3,29 +3,44 @@ import { useState } from "react";
 
 export default function AddButton({
   addList,
-  changeActivate,
   isPopUp,
   setIsPopUp,
+  name = "",
+  desc = "",
+  priorities = "",
+  date = "",
+  id = "",
+  activate = false,
+  type = "add",
+  editList,
 }) {
   const [show, setShow] = useState(false);
 
   return (
     <div>
       <button
-        onClick={() => {
+        onClick={(evt) => {
+          evt.preventDefault();
           setShow(true);
           setIsPopUp(true);
         }}
       >
-        Add task
+        {type === "add" ? "Add task" : "Patch"}
       </button>
       {show && (
         <FormList
           addList={addList}
-          delList={delList}
           setShow={setShow}
           isPopUp={isPopUp}
           setIsPopUp={setIsPopUp}
+          name={name}
+          desc={desc}
+          priorities={priorities}
+          date={date}
+          id={id}
+          activate={activate}
+          type={type}
+          editList={editList}
         />
       )}
     </div>

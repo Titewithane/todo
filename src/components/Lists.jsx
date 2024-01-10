@@ -1,56 +1,66 @@
 import { useState, useEffect } from "react";
 import AddButton from "./AddButton";
+import List from "./List";
 import "./CSS/Lists.css";
 
 export default function Lists({ isPopUp, setIsPopUp }) {
   const [Lists, setLists] = useState([]);
 
+  //! render Lists from localStorage
   useEffect(() => {
     const lists = JSON.parse(localStorage.getItem("Lists"));
-    const newLists = lists.map((val) => val.formData.activate && val);
-    setLists(newLists);
-  }, [Lists]);
+    setLists(lists);
+  }, []);
 
   const addList = (list) => {
     setLists((oldLists) => {
-      const newLists = [...oldLists, list];
+      const newLists = oldLists ? [...oldLists, list] : [list];
+      localStorage.setItem("Lists", JSON.stringify(newLists));
+      return newLists;
+    });
+    console.log(Lists);
+  };
+  const changeActivate = (id) => {
+    setLists((oldLists) => {
+      const newLists = oldLists.map((val) => {
+        return val.formData.id === id
+          ? { ...val, formData: { ...val.formData, activate: false } }
+          : val;
+      });
       localStorage.setItem("Lists", JSON.stringify(newLists));
       return newLists;
     });
   };
-  const changeActivate = (id) => {
+  const editList = (id, data) => {
     setLists((oldLists) => {
-      return oldLists.map((val) =>
-        val.formData.id === id ? !val.formData.activate : val.formData.activate
-      );
+      const newLists = oldLists.map((val) => {
+        val.formData.id === id
+          ? { formData: { ...val.formData, ...data } }
+          : val;
+      });
+      localStorage.setItem("Lists", JSON.stringify(newLists));
+      return newLists;
     });
   };
 
   return (
     <div className="lists">
-      <AddButton
-        addList={addList}
-        delList={delList}
-        isPopUp={isPopUp}
-        setIsPopUp={setIsPopUp}
-      />
+      <AddButton addList={addList} isPopUp={isPopUp} setIsPopUp={setIsPopUp} />
       <form action="">
         {Lists &&
-          Lists.map((val) => {
+          Lists.map((val, idx) => {
             return (
-              <div
-                className="list-item"
-                style={{ backgroundColor: `${val.formData.priorities}` }}
-                key={val.formData.id}
-              >
-                <div className="checkBox">
-                  <input type="checkbox" name="" id="" />
-                </div>
-                <div className="listBody">
-                  <h1>{val.formData.name}</h1>
-                  <small>{val.formData.desc}</small>
-                </div>
-              </div>
+              val.formData.activate && (
+                <List
+                  key={val.formData.id}
+                  addList={addList}
+                  isPopUp={isPopUp}
+                  setIsPopUP={setIsPopUp}
+                  {...val.formData}
+                  changeActivate={changeActivate}
+                  editList={editList}
+                />
+              )
             );
           })}
       </form>

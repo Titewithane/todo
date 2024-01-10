@@ -4,17 +4,25 @@ import "./CSS/FormLIst.css";
 
 export default function FormList({
   addList,
-  changeActivate,
   setShow,
   isPopUp,
   setIsPopUp,
+  name = "",
+  desc = "",
+  priorities = "",
+  date = "",
+  id = "",
+  activate = false,
+  type = "add",
+  editList,
 }) {
   const [formData, setFormData] = useState({
-    name: "",
-    desc: "",
-    priorities: "",
-    date: "",
+    name: name,
+    desc: desc,
+    priorities: priorities,
+    date: date,
     id: uuid(),
+    activate: activate,
   });
   const [isCheck, setIsCheck] = useState([]);
 
@@ -24,6 +32,7 @@ export default function FormList({
     setFormData((curr) => {
       return { ...curr, [changeField]: newValue };
     });
+    !formData.activate && activateForm();
   };
 
   const activateForm = () => {
@@ -77,7 +86,7 @@ export default function FormList({
           <select
             name="priorities"
             id="priorities"
-            value={formData.priority}
+            value={formData.priorities}
             onChange={handleChange}
             required
           >
@@ -89,15 +98,19 @@ export default function FormList({
           </select>
         </div>
         <button
+          type="submit"
           onClick={(evt) => {
             evt.preventDefault();
             setShow(false);
             setIsPopUp(false);
-            activateForm();
-            addList({ formData });
+            {
+              type === "add"
+                ? addList({ formData })
+                : editList(id, { formData });
+            }
           }}
         >
-          + Add Task
+          {type === "add" ? "+Add Task" : "Patch"}
         </button>
       </form>
     </div>
