@@ -34,11 +34,12 @@ export default function Lists({ isPopUp, setIsPopUp }) {
   const editList = (id, data) => {
     setLists((oldLists) => {
       const newLists = oldLists.map((val) => {
-        val.formData.id === id
-          ? { formData: { ...val.formData, ...data } }
+        return val.formData.id === id
+          ? { formData: { ...val.formData, ...data.formData } }
           : val;
       });
       localStorage.setItem("Lists", JSON.stringify(newLists));
+      console.log(`NewLists: ${JSON.stringify(newLists)}`);
       return newLists;
     });
   };

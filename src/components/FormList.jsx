@@ -42,7 +42,12 @@ export default function FormList({
   };
 
   return (
-    <div className="container" style={{ opacity: isPopUp && "1" }}>
+    <form
+      className={type === "add" ? "container-add" : "container-patch"}
+      style={{ opacity: isPopUp && "1" }}
+      action=""
+      method="post"
+    >
       <button
         className="exit"
         onClick={() => {
@@ -51,68 +56,61 @@ export default function FormList({
       >
         X
       </button>
-      <form action="" method="post">
-        <div className="Name">
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            placeholder="Task Name"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="desc">
-          <label htmlFor="desc"></label>
-          <textarea
-            name="desc"
-            id="desc"
-            cols="30"
-            rows="10"
-            placeholder="Description..."
-            onChange={handleChange}
-            value={formData.desc}
-          ></textarea>
-        </div>
-        <div className="priorities">
-          <input
-            type="date"
-            name="date"
-            id="data"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <select
-            name="priorities"
-            id="priorities"
-            value={formData.priorities}
-            onChange={handleChange}
-            required
-          >
-            <option value="">--Select--</option>
-            <option value="red">🔴 Priority</option>
-            <option value="orange">🟠 Priority</option>
-            <option value="yellow">🟡 Priority</option>
-            <option value="green">🟢 Priority</option>
-          </select>
-        </div>
-        <button
-          type="submit"
-          onClick={(evt) => {
-            evt.preventDefault();
-            setShow(false);
-            setIsPopUp(false);
-            {
-              type === "add"
-                ? addList({ formData })
-                : editList(id, { formData });
-            }
-          }}
+      <div className="Name">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          placeholder="Task Name"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="desc">
+        <label htmlFor="desc"></label>
+        <textarea
+          name="desc"
+          id="desc"
+          cols="30"
+          rows="10"
+          placeholder="Description..."
+          onChange={handleChange}
+          value={formData.desc}
+        ></textarea>
+      </div>
+      <div className="priorities">
+        <input
+          type="date"
+          name="date"
+          id="data"
+          value={formData.date}
+          onChange={handleChange}
+        />
+        <select
+          name="priorities"
+          id="priorities"
+          value={formData.priorities}
+          onChange={handleChange}
         >
-          {type === "add" ? "+Add Task" : "Patch"}
-        </button>
-      </form>
-    </div>
+          <option value="">--Select--</option>
+          <option value="red">🔴 Priority</option>
+          <option value="orange">🟠 Priority</option>
+          <option value="yellow">🟡 Priority</option>
+          <option value="green">🟢 Priority</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        onClick={(evt) => {
+          evt.preventDefault();
+          setShow(false);
+          setIsPopUp(false);
+          {
+            type === "add" ? addList({ formData }) : editList(id, { formData });
+          }
+        }}
+      >
+        {type === "add" ? "+Add Task" : "Patch"}
+      </button>
+    </form>
   );
 }

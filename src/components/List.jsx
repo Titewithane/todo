@@ -1,5 +1,6 @@
 import FormList from "./FormList";
 import AddButton from "./AddButton";
+import "./CSS/List.css";
 export default function List({
   addList,
   isPopUp,
@@ -31,8 +32,9 @@ export default function List({
         <h1>{name}</h1>
         <h3>{desc}</h3>
       </div>
-      <div className="settings">
+      <div className="patch">
         <AddButton
+          className="patchBTN"
           addList={addList}
           isPopUp={isPopUp}
           setIsPopUp={setIsPopUP}

@@ -1,0 +1,16 @@
+.list-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.list-item .checkBox {
+  padding-right: 0.7rem;
+}
+
+.list-item .patch {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  transform: translate(-25%, 25%);
+}

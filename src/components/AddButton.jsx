@@ -1,5 +1,6 @@
 import FormList from "./FormList";
 import { useState } from "react";
+import "./CSS/AddButton.css";
 
 export default function AddButton({
   addList,
@@ -19,6 +20,8 @@ export default function AddButton({
   return (
     <div>
       <button
+        className={type === "add" ? "add-btn" : "patch-btn"}
+        style={{ backgroundColor: `${priorities}` }}
         onClick={(evt) => {
           evt.preventDefault();
           setShow(true);
