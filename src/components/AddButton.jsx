@@ -19,33 +19,37 @@ export default function AddButton({
 
   return (
     <div>
-      <button
-        className={type === "add" ? "add-btn" : "patch-btn"}
-        style={{ backgroundColor: `${priorities}` }}
-        onClick={(evt) => {
-          evt.preventDefault();
-          setShow(true);
-          setIsPopUp(true);
-        }}
-      >
-        {type === "add" ? "Add task" : "Patch"}
-      </button>
-      {show && (
-        <FormList
-          addList={addList}
-          setShow={setShow}
-          isPopUp={isPopUp}
-          setIsPopUp={setIsPopUp}
-          name={name}
-          desc={desc}
-          priorities={priorities}
-          date={date}
-          id={id}
-          activate={activate}
-          type={type}
-          editList={editList}
-        />
-      )}
+      <div className="btn">
+        <button
+          className={type === "add" ? "add-btn" : "patch-btn"}
+          style={{ backgroundColor: `${priorities}` }}
+          onClick={(evt) => {
+            evt.preventDefault();
+            setShow(true);
+            setIsPopUp(true);
+          }}
+        >
+          {type === "add" ? "Add task" : "Patch"}
+        </button>
+      </div>
+      <div className="form">
+        {show && (
+          <FormList
+            addList={addList}
+            setShow={setShow}
+            isPopUp={isPopUp}
+            setIsPopUp={setIsPopUp}
+            name={name}
+            desc={desc}
+            priorities={priorities}
+            date={date}
+            id={id}
+            activate={activate}
+            type={type}
+            editList={editList}
+          />
+        )}
+      </div>
     </div>
   );
 }

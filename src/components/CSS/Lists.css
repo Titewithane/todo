@@ -1,13 +1,18 @@
 .lists {
   display: flex;
   flex-direction: column;
+  justify-content: start;
   align-items: center;
-  padding: 5vw;
+  /* padding: 5vw; */
+  padding-top: 1.5dvw;
+  /* width: 100dvw; */
+  max-width: 100dvw;
   min-height: 100dvh;
   background-color: blue;
 }
 
 .list-item {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: start;

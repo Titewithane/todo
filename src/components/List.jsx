@@ -1,6 +1,8 @@
+import { useState } from "react";
 import FormList from "./FormList";
 import AddButton from "./AddButton";
 import "./CSS/List.css";
+import PatchButton from "./PatchButton";
 export default function List({
   addList,
   isPopUp,
@@ -14,6 +16,8 @@ export default function List({
   changeActivate,
   editList,
 }) {
+  const [show, setShow] = useState(false);
+  const [showPatch, setShowPatch] = useState(false);
   return (
     <div
       className="list-item"
@@ -33,20 +37,29 @@ export default function List({
         <h3>{desc}</h3>
       </div>
       <div className="patch">
-        <AddButton
-          className="patchBTN"
-          addList={addList}
-          isPopUp={isPopUp}
+        <PatchButton
+          setShowPatch={setShowPatch}
+          setShow={setShow}
           setIsPopUp={setIsPopUP}
-          name={name}
-          desc={desc}
-          priorities={priorities}
-          date={date}
-          id={id}
-          activate={activate}
-          type={"Patch"}
-          editList={editList}
         />
+      </div>
+      <div className="form-list">
+        {show && showPatch && (
+          <FormList
+            addList={addList}
+            setShow={setShow}
+            isPopUp={isPopUp}
+            setIsPopUp={setIsPopUP}
+            name={name}
+            desc={desc}
+            priorities={priorities}
+            date={date}
+            id={id}
+            activate={activate}
+            type={"Patch"}
+            editList={editList}
+          />
+        )}
       </div>
     </div>
   );
