@@ -21,7 +21,9 @@ export default function List({
   return (
     <div
       className="list-item"
-      style={{ backgroundColor: `${priorities}` }}
+      style={{
+        border: `3px groove ${priorities}`,
+      }}
       key={id}
     >
       <div className="checkBox">
@@ -32,9 +34,16 @@ export default function List({
           id=""
         />
       </div>
-      <div className="listBody">
-        <h1>{name}</h1>
-        <h3>{desc}</h3>
+      <div
+        className="list-body"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
+        <span id="name" style={{ fontSize: "1em" }}>
+          {name}
+        </span>
+        <span id="desc" style={{ fontSize: "0.8em", color: "slategrey" }}>
+          {desc}
+        </span>
       </div>
       <div className="patch">
         <PatchButton

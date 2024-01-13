@@ -1,6 +1,7 @@
 .list-item {
   display: flex;
   flex-direction: row;
+  background-color: rgb(253, 240, 240);
 }
 
 .list-item .checkBox {

@@ -9,5 +9,9 @@
   justify-content: center;
   align-items: center;
   height: 10dvh;
-  background-color: red;
+  background-color: rgb(19, 32, 67);
+}
+
+.Header h1 {
+  color: white;
 }

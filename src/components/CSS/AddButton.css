@@ -1,6 +1,10 @@
 .add-btn {
-  background-color: red;
+  background-color: rgb(241, 180, 187);
   border: none;
+  border-radius: 5%;
+  padding: 0.5em 1em;
+  margin: 0.5em 0.5em;
+  color: rgb(31, 65, 114);
 }
 
 .patch-btn {
