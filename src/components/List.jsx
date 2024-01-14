@@ -23,6 +23,7 @@ export default function List({
       className="list-item"
       style={{
         border: `3px groove ${priorities}`,
+        width: "50dvw",
       }}
       key={id}
     >
@@ -36,7 +37,10 @@ export default function List({
       </div>
       <div
         className="list-body"
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         <span id="name" style={{ fontSize: "1em" }}>
           {name}

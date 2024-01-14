@@ -61,7 +61,6 @@ export default function Lists({ isPopUp, setIsPopUp }) {
       console.log(sortedLists);
       return sortedLists;
     });
-    console.log("Array has been sorted");
   };
 
   return (

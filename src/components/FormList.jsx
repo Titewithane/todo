@@ -48,15 +48,16 @@ export default function FormList({
       action=""
       method="post"
     >
-      <button
-        className="exit"
-        onClick={() => {
-          setShow(false);
-        }}
-      >
-        X
-      </button>
-      <div className="Name">
+      <div className="btn-exit-container">
+        <button
+          onClick={() => {
+            setShow(false);
+          }}
+        >
+          <span id="btn-exit">X</span>
+        </button>
+      </div>
+      <div className="name-container">
         <input
           type="text"
           name="name"
@@ -65,26 +66,18 @@ export default function FormList({
           onChange={handleChange}
         />
       </div>
-      <div className="desc">
-        <label htmlFor="desc"></label>
+      <div className="desc-container">
         <textarea
           name="desc"
           id="desc"
           cols="30"
-          rows="10"
-          placeholder="Description..."
+          rows="7"
+          placeholder="Description ..."
           onChange={handleChange}
           value={formData.desc}
         ></textarea>
       </div>
-      <div className="priorities">
-        <input
-          type="date"
-          name="date"
-          id="data"
-          value={formData.date}
-          onChange={handleChange}
-        />
+      <div className="date-priorities-container">
         <select
           name="priorities"
           id="priorities"
@@ -97,20 +90,35 @@ export default function FormList({
           <option value="yellow">🟡 Priority</option>
           <option value="green">🟢 Priority</option>
         </select>
+        <input
+          type="date"
+          name="date"
+          id="data"
+          value={formData.date}
+          onChange={handleChange}
+        />
       </div>
-      <button
-        type="submit"
-        onClick={(evt) => {
-          evt.preventDefault();
-          setShow(false);
-          setIsPopUp(false);
-          {
-            type === "add" ? addList({ formData }) : editList(id, { formData });
-          }
-        }}
-      >
-        {type === "add" ? "+Add Task" : "Patch"}
-      </button>
+      <div className="btn-container">
+        <button
+          type="submit"
+          onClick={(evt) => {
+            evt.preventDefault();
+            setShow(false);
+            setIsPopUp(false);
+            {
+              type === "add"
+                ? addList({ formData })
+                : editList(id, { formData });
+            }
+          }}
+        >
+          {type === "add" ? (
+            <span id="add-task">Add Task</span>
+          ) : (
+            <span id="patch">Patch</span>
+          )}
+        </button>
+      </div>
     </form>
   );
 }

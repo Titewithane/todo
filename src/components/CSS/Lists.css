@@ -20,10 +20,19 @@
 }
 
 .btn-sort button {
+  /* position: absolute; */
   font-size: 0.8em;
   border: none;
   border-radius: 5%;
   padding: 0em 0.5em;
+  background-color: rgb(241, 180, 187);
+  color: rgb(31, 65, 114);
+}
+.btn-sort button:hover {
+  transition: 0.5;
+  background-color: rgb(31, 65, 114);
+  color: rgb(241, 180, 187);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .list-item {

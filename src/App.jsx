@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Lists from "./components/Lists";
+import FormList from "./components/FormList";
 
 function App() {
   const [isPopUp, setIsPopUp] = useState(false);
